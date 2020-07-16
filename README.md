@@ -35,10 +35,10 @@ So far, if everything has been done correctly, you should now be able to used al
 
 In GHDL many commands are available, for instance:
 
--```ghdl -s``` makes a syntax check of the files;
--```ghdl -a``` analyze the files;
--```ghdl -e``` elaborate the defined units in the files (Architecture);
--```ghdl -r``` runs the files.
+- ```ghdl -s``` makes a syntax check of the files;
+- ```ghdl -a``` analyze the files;
+- ```ghdl -e``` elaborate the defined units in the files (Architecture);
+- ```ghdl -r``` runs the files.
 
 For deeper details for the various compiling options you can type from the shell the option:
 ```
