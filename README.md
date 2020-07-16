@@ -47,8 +47,10 @@ ghdl --help
 The following lines are a simple example on how to check, analyze, execute and run the files and eventually display them in the GTKwave software: 
 ```
 cd ~/path/to/the/repository/
+ghdl -s library.vhd
 ghdl -s source_file_name.vhd
 ghdl -s test_bench.vhd
+ghdl -a library.vhd
 ghdl -a source_file_name.vhd
 ghdl -a test_bench.vhd
 ghdl -e test_bench
