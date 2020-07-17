@@ -1,20 +1,23 @@
 # Software Project
 
+## Proposal of the repository
+
+In this frame work I present a part my master degree thesis work and reaserch. The proposed codes are sub-sets of a more complex hardware design which with the brightest expectations will be installed in the Trigger DAQ-chain of the ATLAS' tracker for the Phase-II upgrade. My aim is to provide the sources of this codes, a valid test of the effective functionality of the codes itself and their key role in the whole project development.
+
 ## VHDL brief introduction
 VHDL, or better VHSIC-HDL (Very High Speed Integrated Circuit Hardware Description Language), is a hardware description language, used in electronic design automatation to describe digital and mixed signal systems such as FPGAs (Field Programmable Gate Arrays) and ASICs (Application Specific Integrated Circuits). 
 
 A VHDL project development is divided into 4 phases:
 
-- Register Transfer Level (RTL): i.e. the source codes which, through the libraries provided by the language, includes the "built"  electronic circuit of interest (so called Architecture);
-- Simulation: test of the built circuit by setting the input signals and studying the output ones (this part is still done in software);
-- Synthesis: creation of the logic scheme and instantiation of the for a generic FPGA (not specific one) and creation of a list of needed components to be implemented (Netlist);
-- Implementation: physical implementation of the type and number of components on a real FPGA (of course different FPGAs have different features). 
+- *Register Transfer Level (RTL)*: i.e. the source codes which, through the libraries provided by the language, includes the "built"  electronic circuit of interest (so called Architecture);
+- *Simulation*: test of the built circuit by setting the input signals and studying the output ones (this part is still done in software);
+- *Synthesis*: creation of the logic scheme and instantiation of the for a generic FPGA (not specific one) and creation of a list of needed components to be implemented (Netlist);
+- *Implementation*: physical implementation of the type and number of components on a real FPGA (of course different FPGAs have different features). 
 
-The last two parts of the project development may be done only if a physical hardware is present, thus for the pourpose of the project only the first two steps will be developed.
+The last two parts of the project development may be done only if a physical hardware is present, maybe even with more sofisticated programs. I am currently learning how to develop complete hardware designs in [Vivado](https://www.xilinx.com/products/design-tools/vivado.html), but since it is required a licence and specially the program size is quite huge, only the first two steps will be developed with a free and easy-to-handle tool.
 
 ## GHDL installation and compiler 
-Before getting started, to run the codes in this repository (written in VHDL) you need to install a free compiler for such codes. It should not take longer than 15 minutes (if you have a low connection like me).
-To execute the codes, I suggest to use GHDL, which is easy to hadle, and suits perfectly for the pourposes of this project. Beware, this software in not able to provide a Synthesis phase (thus no netlist will be produced).
+There are many free compiler you can find online, but to execute the codes in this repository I suggest to use GHDL, which suits perfectly for the pourposes of this project. Beware, this software in not able to provide a Synthesis phase (thus no netlist will be produced).
 In any case, here is a simple tutorial to install and compile in GHDL.
 From your power shell type the following lines to install and to clone the [GHDL](https://github.com/ghdl/ghdl) repository:
 ```
@@ -57,4 +60,4 @@ ghdl -e test_bench
 ghdl -r test_bench --vcd=source_file_name.vcd
 gtkwave source_file_name.vcd
 ```
-## 
+
