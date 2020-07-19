@@ -26,6 +26,7 @@ ARCHITECTURE Behavioral of counter_test_bench is
 	signal input : std_logic_vector(Bits_in downto 0);
 	signal output : std_logic_vector(Bits_out downto 0);
 	signal input_r :  unsigned(Bits_in downto 0);
+	signal reset : std_logic := '0';
 	constant cycles : integer := 10000;
 	constant clk_freq :  time := 10 ns; 
 begin 
@@ -50,28 +51,28 @@ begin
 		wait for 1000 ns;	
 	end process;
 	
-	--assignement 
+	--assignement process
 	process
-	variable reset : integer range 0 to 1 := 0;
+	
 	
 	begin
 		input_r <= (others=>'0');
 		input <= std_logic_vector(input_r);
-		reset := 0;
-		 case reset is 
-			when 0 => for i in Bits_in-4 to Bits_in-2 loop
-									if (input_r(i) = '1') then
-										reset := 1;
-									else 
-										input_r <= input_r + 1; 
-										input <= std_logic_vector(input_r);
-									end if;
-								end loop;
-			when 1 => 
-								input_r <= (others=>'0');
-								input <= std_logic_vector(input_r);
-								reset := 0;
-		end case;
+		 
+		if (reset = '0') then		
+			for i in 0 to Bits_in loop
+				if (input_r(i) = '1' and input_r(i+1) = '0' and input_r(i+2) = '1' ) then
+					reset <= '1';
+				else 
+					input_r <= input_r + 1;
+					input <= std_logic_vector(input_r);
+				end if;
+			end loop;
+		else
+			input_r <= (others=>'0');
+			input <= std_logic_vector(input_r);
+			reset <= '0';
+		end if;
 		wait for 1 ms;
 		assert false report "Test: OK" severity failure;
 	end process;

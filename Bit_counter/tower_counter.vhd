@@ -5,12 +5,16 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+-- usage of the defined package
+library work;
+use work.Bits.all;
+
 --bit counter implementation 
 ENTITY tower_counter is 
 	port(
 	clk : in std_logic;
-	input: in std_logic_vector (7 downto 0);
-	output : out std_logic_vector(3 downto 0)
+	input: in std_logic_vector (Bits_in downto 0);
+	output : out std_logic_vector(Bits_out downto 0)
 	);
 end tower_counter;
 
@@ -27,7 +31,7 @@ begin
 		if (clk'event and clk = '1') then
 			
 			counter := 0;
-			for i in 0 to 8-1 loop
+			for i in 0 to Bits_in loop
 				
 				--bit count if the ith bit is '1'
 				if ( input (i) = '1') then 
