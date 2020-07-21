@@ -2,6 +2,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use ieee.math_real.uniform;
 
 -- usage of the defined package
 library work;
@@ -16,19 +17,36 @@ ARCHITECTURE Behavioral of counter_test_bench is
 	component tower_counter
 		port(
 		clk : in std_logic;
-		input: in std_logic_vector;
-		output : out std_logic_vector
+		input: in unsigned;
+		output : out UNSIGNED
 		);
 	end component;
 	
 	--signal "internal" declaration
 	signal clk : std_logic := '0';
-	signal input : std_logic_vector(Bits_in downto 0);
-	signal output : std_logic_vector(Bits_out downto 0);
-	signal input_r :  unsigned(Bits_in downto 0);
+	signal input : unsigned(Bits_in downto 0);
+	signal output : unsigned(Bits_out downto 0);
 	signal reset : std_logic := '0';
 	constant cycles : integer := 10000;
 	constant clk_freq :  time := 10 ns; 
+
+	impure function random_unsigned( lenght : integer) return unsigned is
+		variable r : real;
+		variable u_input : unsigned(lenght  downto 0);
+		variable seed1 : integer := 42;  --set seeds for the random genaration
+		variable seed2 : integer := 42;
+	begin
+		for i in u_input'range loop 
+			uniform(seed1, seed2, r);
+			if r>0.5 then
+				u_input(i) := '1' ;
+			else 
+				u_input(i) := '0' ;
+			end if;
+		end loop;
+		return u_input;
+	end function;
+	
 begin 
 	
 	counter_map:tower_counter
@@ -48,33 +66,21 @@ begin
 			wait for clk_freq/2;
 			clk <= not clk;
 		end loop;
-		wait for 1000 ns;	
+		wait for 1 ms;	
 	end process;
 	
 	--assignement process
 	process
-	
-	
 	begin
-		input_r <= (others=>'0');
-		input <= std_logic_vector(input_r);
-		 
-		if (reset = '0') then		
-			for i in 0 to Bits_in loop
-				if (input_r(i) = '1' and input_r(i+1) = '0' and input_r(i+2) = '1' ) then
-					reset <= '1';
-				else 
-					input_r <= input_r + 1;
-					input <= std_logic_vector(input_r);
-				end if;
-			end loop;
-		else
-			input_r <= (others=>'0');
-			input <= std_logic_vector(input_r);
-			reset <= '0';
+		
+		input <= "00111100" after clk_freq;
+		
+		if (clk'event and clk = '1') then
+			input <= random_unsigned(Bits_in) after clk_freq;
 		end if;
+		
 		wait for 1 ms;
-		assert false report "Test: OK" severity failure;
+	assert false report "Test: OK" severity failure;
 	end process;
 	
 end Behavioral;
