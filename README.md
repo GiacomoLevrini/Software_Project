@@ -55,4 +55,10 @@ In general every sub-respository has a library to compile, a source and a test_b
 
 ### divider.vhd
 
+![](./Divider/divider_simulation.png)
+![](./Divider/divider_simulation.gif)
+
 ### tower_counter.vhd
+
+![](./Bit_counter/bit_counter_simulation.png)
+![](./Bit_counter/bit_counter_simulation.gif)
