@@ -45,9 +45,10 @@ ARCHITECTURE Behavioral of counter_test_bench is
 	signal bit_7 : unsigned(Bits_out downto 0) := (others =>'0') ;
 	constant cycles : integer := 10000;
 	constant clk_freq :  time := 10 ns; 
-	signal seed_1 : integer := 0;
+	signal seed_1 : integer := 0;--changhing this initializations will change the values assigned in the simulation
 	signal seed_2 : integer := 0;
 	
+	--implementation of a random generator of signal of lenght choose by the user
 	impure function random_unsigned( lenght : integer; seed_1_f : integer ; seed_2_f : integer ) return unsigned is
 		variable r : real;
 		variable seed1 : integer := seed_1_f;  --set seeds for the random genaration
@@ -66,7 +67,7 @@ ARCHITECTURE Behavioral of counter_test_bench is
 	end function;
 	
 begin 
-	
+	---mapping the component signals to the one in the test bench (i.e. attaching the external signals to the internal one)
 	counter_map:tower_counter
 	port map(
 	clk => clk,
@@ -107,6 +108,7 @@ begin
 	--assignement process
 	process
 	begin
+	--loop to check if the counter and the state machine work
 		while (seed_1 < 1000 and seed_2 < 2000) loop 
 			if (( seed_1 rem 10 )=0) then
 				input <= "00111100";

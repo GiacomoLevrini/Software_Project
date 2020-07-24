@@ -34,9 +34,10 @@ ARCHITECTURE BEHAVIORAL of divider_test_bench is
 	signal zeta_out : unsigned(bits_num-bits_den-1 downto 0);
 	constant cycles : integer := 10000;
 	constant clk_freq :  time := 10 ns; 
-	signal seed_1 : integer := 0;
+	signal seed_1 : integer := 0; --changhing this initializations will change the values assigned in the simulation
 	signal seed_2 : integer := 0;
 	
+	--implementation of a random generator of signal of lenght choose by the user
 	impure function random_unsigned( lenght : integer; seed_1_f : integer ; seed_2_f : integer ) return unsigned is
 		variable r : real;
 		variable seed1 : integer := seed_1_f;  --set seeds for the random genaration
@@ -55,7 +56,7 @@ ARCHITECTURE BEHAVIORAL of divider_test_bench is
 	end function;
 
 begin
-	--mapping the component signals to the one in the test bench (i.e. attaching the
+	--mapping the component signals to the one in the test bench (i.e. attaching the external signals to the internal one)
 	divider_map:divider
 	port map(
 	clk => clk,
@@ -88,7 +89,7 @@ begin
 	--assignment process
 	process
 	begin
-		
+		--loop to test the correct fuctoning of the division 
 		while (seed_1 < 1000 and seed_2 < 2000) loop 
 			if (( seed_1 rem 10 )=0) then
 				go_div <= '0';

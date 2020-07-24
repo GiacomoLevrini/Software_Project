@@ -4,7 +4,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
---declaration of the number of i/o bits
+--declaration of the number of in and out bits and of the type array_test
 Package Bits is
 	constant Bits_in : integer := 7;
     constant Bits_out : integer := 3;
