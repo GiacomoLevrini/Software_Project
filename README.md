@@ -2,7 +2,7 @@
 
 ## Proposal of the repository
 
-In this frame work I wiil present a part of my master degree thesis develompent and reaserch. The proposed codes are sub-sets of a more complex hardware design which, with the brightest expectations, will be installed in the Trigger DAQ-chain of the ATLAS's tracker for the Phase-II upgrade. My aim is to provide the sources of this codes, a valid test of the effective functionality of the codes itself and their key role in the whole project development.
+In this frame work I will present a part of my master degree thesis development and reaserch. The proposed codes are sub-sets of a more complex hardware design which, with the brightest expectations, will be installed in the Trigger DAQ-chain of the ATLAS's tracker for the Phase-II upgrade. My aim is to provide the sources of this codes, a valid test of the effective functionality of the codes itself and their key role in the whole project development.
 
 #### VHDL brief introduction
 VHDL, or better VHSIC-HDL (Very High Speed Integrated Circuit Hardware Description Language), is a hardware description language, used in electronic design automatation to describe digital and mixed signal systems such as FPGAs (Field Programmable Gate Arrays) and ASICs (Application Specific Integrated Circuits). 
